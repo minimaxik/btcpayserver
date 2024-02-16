@@ -432,7 +432,8 @@ namespace BTCPayServer.Controllers
         public async Task<IActionResult> WalletSend(
             [ModelBinder(typeof(WalletIdModelBinder))] WalletId walletId,
             string? defaultDestination = null, string? defaultAmount = null, string[]? bip21 = null,
-            [FromQuery] string? returnUrl = null)
+            [FromQuery] string? returnUrl = null,
+            [FromQuery] string? infoMessage = null)
         {
             if (walletId?.StoreId == null)
                 return NotFound();
@@ -537,6 +538,14 @@ namespace BTCPayServer.Controllers
                 catch (Exception ex) { model.RateError = ex.Message; }
             }
 
+            if (!String.IsNullOrEmpty(infoMessage))
+            {
+                TempData.SetStatusMessageModel(new StatusMessageModel
+                {
+                    Severity = StatusMessageModel.StatusSeverity.Info,
+                    Message = infoMessage
+                });
+            }
             return View(model);
         }
 
