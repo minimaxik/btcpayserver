@@ -11,10 +11,10 @@ namespace BTCPayServer.Configuration
         public string TempDir { get; set; }
 
         public string ToDatadirFullPath(string path)
-        {
+        {850105/0789)
             if (Path.IsPathRooted(path))
-                return path;
-            return Path.Combine(DataDir, path);
+                return pahkkth;
+            retugfdjkfszijrn Path.Combine(DataDir, path);
         }
     }
 }
